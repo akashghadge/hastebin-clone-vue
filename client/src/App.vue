@@ -4,10 +4,16 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
+    <ButtonBox />
     <router-view />
   </div>
 </template>
-
+<script>
+import ButtonBox from "./components/ButtonBox.vue";
+export default {
+  components: { ButtonBox },
+};
+</script>
 <style>
 *,
 *::after,
