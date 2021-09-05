@@ -1,13 +1,33 @@
 <template>
   <div class="button-box">
     <h3>Hastebin</h3>
-    <button>Save</button>
+    <button @click="saveDoc">Save</button>
     <button>New</button>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "ButtonBox",
+  data() {
+    return {};
+  },
+  methods: {
+    saveDoc(e) {
+      console.log(this.$store.state.codeData);
+      this.$store
+        .dispatch("saveCode")
+        .then((data) => {
+          console.log(data);
+          this.$alert(data, "Success", "success");
+        })
+        .catch((err) => {
+          console.log(err);
+          this.$alert(err, "Failed to Save", "warning");
+        });
+    },
+  },
+};
 </script>
 
 <style>

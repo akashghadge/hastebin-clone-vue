@@ -6,9 +6,10 @@
     </div>
     <textarea
       id="codeEditorTextarea"
-      name="codeValue"
-      v-model="codeData"
+      name="codeValueName"
       @keyup="textAreAdjust"
+      @input="setStateCode"
+      v-bind:value="codeData"
       @keydown="textareaTab"
       autofocus
     ></textarea>
@@ -19,9 +20,7 @@
 export default {
   name: "CodeEditor",
   data() {
-    return {
-      codeData: "",
-    };
+    return {};
   },
   methods: {
     textareaTab(event) {
@@ -40,11 +39,17 @@ export default {
       e.style.height = "1px";
       e.style.height = 25 + e.scrollHeight + "px";
     },
+    setStateCode(e) {
+      this.$store.commit("updateData", e.target.value);
+    },
   },
   computed: {
+    codeData() {
+      return this.$store.state.codeData;
+    },
     linesOfCode() {
-      if (this.codeData.length !== 0) {
-        return this.codeData.split("\n").length;
+      if (this.$store.state.codeData.length !== 0) {
+        return this.$store.state.codeData.split("\n").length;
       }
       return 1;
     },
@@ -61,6 +66,7 @@ export default {
   outline: none;
   border: none;
   min-height: 100vh;
+  font-size: 1rem;
 }
 textarea {
   background: transparent;
