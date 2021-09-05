@@ -9,11 +9,18 @@
 </template>
 
 <style>
-#nav,
-a {
-  text-align: center;
-  text-decoration: none;
-  text-transform: none;
-  color: black;
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bgCol: #002b36;
+  --colMain: #93a1a1;
+}
+body {
+  background-color: var(--bgCol);
 }
 </style>

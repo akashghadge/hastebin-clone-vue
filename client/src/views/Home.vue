@@ -1,16 +1,19 @@
 <template>
   <div class="home">
-    <CreatePlayer />
+    <!-- <CodeDisplay /> -->
+    <CodeEditor />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import CreatePlayer from "@/views/CreatePlayer";
+import CodeDisplay from "@/views/CodeDisplay";
+import CodeEditor from "./CodeEditor.vue";
 export default {
   name: "Home",
   components: {
-    CreatePlayer,
+    CodeDisplay,
+    CodeEditor,
   },
 };
 </script>
