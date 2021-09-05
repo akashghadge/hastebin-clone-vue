@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <h1>Write Snippet Save and Share</h1>
     <ButtonBox />
     <router-view />
   </div>
@@ -25,6 +22,10 @@ export default {
 :root {
   --bgCol: #002b36;
   --colMain: #93a1a1;
+}
+#app > h1 {
+  text-align: center;
+  color: var(--colMain);
 }
 body {
   background-color: var(--bgCol);

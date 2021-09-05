@@ -14,10 +14,17 @@ export default new Vuex.Store({
   },
   actions: {
     saveCode(state, payload) {
+      let obj = {
+        codeData: payload.codeData
+      };
+
       return new Promise((resolve, reject) => {
-        fetch('http://localhost:5000/api/save-code', {
-          method: "POST",
-          codeData: state.codeData
+        fetch('/api/code/save-code', {
+          method: 'POST', // or 'PUT'
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(obj),
         }).then((resp) => resp.json())
           .then((data) => {
             console.log(data);
@@ -28,7 +35,6 @@ export default new Vuex.Store({
             reject(err)
           })
       })
-      state.codeData = "";
     }
   },
   modules: {

@@ -2,7 +2,7 @@
   <div class="button-box">
     <h3>Hastebin</h3>
     <button @click="saveDoc">Save</button>
-    <button>New</button>
+    <button @click="newDoc">New</button>
   </div>
 </template>
 
@@ -13,18 +13,26 @@ export default {
     return {};
   },
   methods: {
+    // for saving snippet
     saveDoc(e) {
-      console.log(this.$store.state.codeData);
       this.$store
-        .dispatch("saveCode")
+        .dispatch("saveCode", { codeData: this.$store.state.codeData })
         .then((data) => {
-          console.log(data);
-          this.$alert(data, "Success", "success");
+          console.log("succes", data);
+          this.$alert(
+            `Copy this link :-
+            ${window.location.origin}/codes/${data._id}`,
+            "Success",
+            "success"
+          );
         })
         .catch((err) => {
           console.log(err);
           this.$alert(err, "Failed to Save", "warning");
         });
+    },
+    newDoc() {
+      window.location.assign("/");
     },
   },
 };

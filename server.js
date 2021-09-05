@@ -23,12 +23,17 @@ require("./DB/conn");
 
 
 // api routers
-
+const Code = require("./routes/Code.route");
 // routes setting
+app.use('/api/code', Code);
 
 
-
-
+// for production use
+app.use(express.static("client/dist"));
+const path = require("path");
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "dist", "index.html"))
+})
 
 
 

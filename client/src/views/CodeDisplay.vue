@@ -1,8 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="line-numbers">
-      <p>1</p>
-      <p>2</p>
+      <p v-for="num in linesOfCode" v-bind:key="num">{{ num }}</p>
     </div>
     <pre><code class="code-display">{{value}}</code></pre>
   </div>
@@ -13,12 +12,34 @@ export default {
   name: "CodeDisplay",
   data() {
     return {
-      value: "<h1>hello<h1>",
+      value: "<h1>Loading Data...</h1>",
     };
   },
   mounted() {
-    console.log("fetch");
-    hljs.highlightAll();
+    console.log(this.$route.params.id);
+    fetch(`/api/code/${this.$route.params.id}`, {
+      method: "GET", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.value = data;
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  computed: {
+    linesOfCode() {
+      console.log(this.value);
+      if (this.value.length !== 0) {
+        return this.value.split("\n").length;
+      }
+      return 1;
+    },
   },
 };
 </script>

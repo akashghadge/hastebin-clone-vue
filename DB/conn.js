@@ -1,7 +1,7 @@
 // database connections
 const mongoose = require("mongoose");
 const uri = process.env.MONGO_URI;
-mongoose.connect("mongodb://localhost/hastebin-clone", {
+mongoose.connect(uri || "mongodb://localhost/hastebin-clone", {
     useNewUrlParser: true, useUnifiedTopology: true
 }).then((data) => {
     console.log("DB is connected..");
