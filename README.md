@@ -10,7 +10,7 @@ Major Features:-
 1)Creation of Snippet
 2)Sharing it's URL
 3)Displaying Snippet
-3)Text Highlighting
+3)Text Highlighting.
 
 How Major Features Implemented:-
 1) Creation of snippet is done using textarea and Vue directive v-model and stored in Vuex store.
