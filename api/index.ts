@@ -19,11 +19,11 @@ app.use(cookieParser());
 
 
 // getting db connection
-require("../DB/conn");
+require("./DB/conn");
 
 
 // api routers
-const Code = require("../routes/Code.route");
+const Code = require("./routes/Code.route");
 // routes setting
 app.use('/api/code', Code);
 
